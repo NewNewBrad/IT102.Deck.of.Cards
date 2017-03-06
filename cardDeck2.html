@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Deck of Cards - IT102 - Brad Jones</title>
+</head>
+
+
+<body>
+<script type="text/javascript">
+function card(suit,rank){
+	this.suit = suit;
+	this.rank = rank;
+}
+
+var cards = [];
+var suit;
+
+for (s = 1; s <= 4; s++){
+	for (i = 1; i <= 13; i++){
+		if (s == 1){suit = "Hearts"}
+		else if (s == 2){suit = "Diamonds"}
+		else if (s == 3){suit = "Spades"}
+		else if (s == 4){suit = "Clubs"}
+		cards[i] = new card(suit,i)
+			if (i == 1){card.rank = "Ace"}
+			if (i == 11){card.rank = "Jack"}
+			if (i == 12){card.rank = "Queen"}
+			if (i == 13){card.rank = "King"}
+prompt("The " + cards[i].rank + " of " + cards[i].suit + ".")			 
+	}
+}
+
+
+
+
+
+</script>
+</body>
+</html>
