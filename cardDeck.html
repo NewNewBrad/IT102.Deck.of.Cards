@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Deck of Cards - IT102 - Brad Jones</title>
+</head>
+
+
+<body>
+<script type="text/javascript">
+function card(suit,rank){
+	this.suit = suit;
+	this.rank = rank;
+}	
+
+var deck = [];
+var i = 1;
+for(i = 1; i <= 52; i++){
+	deck[i] = new card(i, i);
+	if(i <= 13){deck[i].suit = "Hearts"}
+		if (i == 1) {deck[i].rank = "Ace";}
+   		if (i == 11) {deck[i].rank = "Jack";}
+   		if (i == 12) {deck[i].rank = "Queen";}
+   		if (i == 13) {deck[i].rank = "King";}
+	if(i <= 26 && i > 13) {deck[i].suit = "Diamonds"}
+		if (i == 14) {deck[i].rank = "Ace";}
+   		if (i == 24) {deck[i].rank = "Jack";}
+   		if (i == 25) {deck[i].rank = "Queen";}
+   		if (i == 26) {deck[i].rank = "King";}
+	if(i <= 39 && i > 26) {deck[i].suit = "Spades"}
+		if (i == 27) {deck[i].rank = "Ace";}
+   		if (i == 37) {deck[i].rank = "Jack";}
+   		if (i == 38) {deck[i].rank = "Queen";}
+   		if (i == 39) {deck[i].rank = "King";}
+	if(i <= 52 && i > 39) {deck[i].suit = "Clubs"}
+		if (i == 40) {deck[i].rank = "Ace";}
+   		if (i == 50) {deck[i].rank = "Jack";}
+   		if (i == 51) {deck[i].rank = "Queen";}
+   		if (i == 52) {deck[i].rank = "King";}
+
+alert("The " + deck[i].rank + " of " + deck[i].suit)
+}
+
+
+
+</script>
+</body>
+
+</html>
