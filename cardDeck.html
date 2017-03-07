@@ -2,47 +2,126 @@
 <html>
 <head>
 	<title>Deck of Cards - IT102 - Brad Jones</title>
+	<style type="text/css">
+*{
+
+	margin: auto;
+}
+
+body{
+	width: 220px;
+	height: 300px;
+	background-color: green;
+	text-align: center;
+	color: white;
+}
+
+div{
+	background-color: white;
+	color: black;
+}
+
+
+.card{
+    width:40px;
+    height:60px;
+    border:1px solid #151718;
+    float:left;
+    margin-left: 16px;
+    margin-right:15px;
+    margin-bottom:5px;
+    border-radius:2px;
+    font-family:courier;
+    cursor:pointer;
+}
+
+span.number, span.suit{
+    width:100%;
+    display:block;
+    text-align:center;
+    padding-top:8px;
+}
+		
+
+	</style>
+
 </head>
 
 
 <body>
 <script type="text/javascript">
-function card(suit,rank){
-	this.suit = suit;
+
+//Prototype card
+function card(value, rank, suit){
 	this.rank = rank;
-}	
+	this.suit = suit;
+}
 
-var deck = [];
-var i = 1;
-for(i = 1; i <= 52; i++){
-	deck[i] = new card(i, i);
-	if(i <= 13){deck[i].suit = "Hearts"}
-		if (i == 1) {deck[i].rank = "Ace";}
-   		if (i == 11) {deck[i].rank = "Jack";}
-   		if (i == 12) {deck[i].rank = "Queen";}
-   		if (i == 13) {deck[i].rank = "King";}
-	if(i <= 26 && i > 13) {deck[i].suit = "Diamonds"}
-		if (i == 14) {deck[i].rank = "Ace";}
-   		if (i == 24) {deck[i].rank = "Jack";}
-   		if (i == 25) {deck[i].rank = "Queen";}
-   		if (i == 26) {deck[i].rank = "King";}
-	if(i <= 39 && i > 26) {deck[i].suit = "Spades"}
-		if (i == 27) {deck[i].rank = "Ace";}
-   		if (i == 37) {deck[i].rank = "Jack";}
-   		if (i == 38) {deck[i].rank = "Queen";}
-   		if (i == 39) {deck[i].rank = "King";}
-	if(i <= 52 && i > 39) {deck[i].suit = "Clubs"}
-		if (i == 40) {deck[i].rank = "Ace";}
-   		if (i == 50) {deck[i].rank = "Jack";}
-   		if (i == 51) {deck[i].rank = "Queen";}
-   		if (i == 52) {deck[i].rank = "King";}
+//Creating the deck structure
+function deck(){
+	this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+	this.suits = ['Hearts','Diamonds','Spades','Clubs'];
+	var cards = [];
 
-alert("The " + deck[i].rank + " of " + deck[i].suit)
+//for loops run until every value in both arrays are counted    
+    for( var s = 0; s < this.suits.length; s++ ) {
+        for( var n = 0; n < this.ranks.length; n++ ) {
+            cards.push( new card( n+1, this.ranks[n], this.suits[s] ) );
+        }
+    }
+
+    return cards;
 }
 
 
+//creating the deck array
+var myDeck = new deck();
+
+
+//Testing 1...2...3...
+//console.log(myDeck);
+
+
+//Already working on this for IT111 class.
+//On load of the page, function creates and titles new Div in HTML for each card.
+window.onload = function() {
+
+
+//(i < 3) for the draw 3 at random assignment. Alternate shows full deck.
+//  for(var i=0; i < myDeck.length; i++){
+	for(var i=0; i < 3; i++){
+		div = document.createElement('div');
+		div.className = 'card';
+
+
+//Loops through ascii code for card suit images
+		if(myDeck[i].suit == 'Diamonds'){
+			var ascii_char = '♦';
+		} else {
+			var ascii_char = '&' + myDeck[i].suit.toLowerCase() + ';';
+		}
+
+
+//Displays cards in the HTML
+		div.innerHTML = '' + myDeck[i].rank + '' + ascii_char + '';
+		document.body.appendChild(div);
+	}
+
+}
+
+//Randomizing the entire deck.
+//Instead of randomizing each card as you draw it, randomizes the entire deck, and draws from the top
+function shuffle(o) {
+	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+	return o;
+};
+
+myDeck = shuffle(myDeck);
+
 
 </script>
+<p>Refresh to draw 3 cards at random<br></p>
+
 </body>
 
 </html>
