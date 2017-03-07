@@ -52,18 +52,21 @@ span.number, span.suit{
 <script type="text/javascript">
 
 //Prototype card
+
 function card(value, rank, suit){
 	this.rank = rank;
 	this.suit = suit;
 }
 
 //Creating the deck structure
+
 function deck(){
 	this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 	this.suits = ['Hearts','Diamonds','Spades','Clubs'];
 	var cards = [];
 
-//for loops run until every value in both arrays are counted    
+//for loops run until every value in both arrays are counted 
+
     for( var s = 0; s < this.suits.length; s++ ) {
         for( var n = 0; n < this.ranks.length; n++ ) {
             cards.push( new card( n+1, this.ranks[n], this.suits[s] ) );
@@ -75,6 +78,7 @@ function deck(){
 
 
 //creating the deck array
+
 var myDeck = new deck();
 
 
@@ -84,17 +88,20 @@ var myDeck = new deck();
 
 //Already working on this for IT111 class.
 //On load of the page, function creates and titles new Div in HTML for each card.
+
 window.onload = function() {
 
 
 //(i < 3) for the draw 3 at random assignment. Alternate shows full deck.
 //  for(var i=0; i < myDeck.length; i++){
+
 	for(var i=0; i < 3; i++){
 		div = document.createElement('div');
 		div.className = 'card';
 
 
 //Loops through ascii code for card suit images
+
 		if(myDeck[i].suit == 'Diamonds'){
 			var ascii_char = '♦';
 		} else {
@@ -103,6 +110,7 @@ window.onload = function() {
 
 
 //Displays cards in the HTML
+
 		div.innerHTML = '' + myDeck[i].rank + '' + ascii_char + '';
 		document.body.appendChild(div);
 	}
@@ -111,6 +119,7 @@ window.onload = function() {
 
 //Randomizing the entire deck.
 //Instead of randomizing each card as you draw it, randomizes the entire deck, and draws from the top
+
 function shuffle(o) {
 	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 	return o;
